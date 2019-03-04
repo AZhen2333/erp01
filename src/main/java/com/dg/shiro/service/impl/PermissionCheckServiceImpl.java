@@ -1,11 +1,15 @@
 package com.dg.shiro.service.impl;
 
+import com.dg.listener.ConfigListener;
 import com.dg.shiro.ShiroKit;
 import com.dg.shiro.ShiroUser;
 import com.dg.shiro.service.PermissionCheckService;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.Iterator;6
+import java.util.Iterator;
 import java.util.List;
 
 public class PermissionCheckServiceImpl implements PermissionCheckService {
@@ -38,6 +42,30 @@ public class PermissionCheckServiceImpl implements PermissionCheckService {
             if (ShiroKit.hasAnyRoles(sb.toString())) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    /**
+     * 检查当前登录用户是否拥有当前请求的servlet的权限
+     *
+     * @return
+     */
+    @Override
+    public boolean checkAll() {
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+        ShiroUser user = ShiroKit.getShiroUser();
+        if (null == user) {
+            return false;
+        }
+        String requestURI = request.getRequestURI().replaceFirst(ConfigListener.getConf().get("contextPath"), "");
+        String[] str = requestURI.split("/");
+        if (str.length > 3) {
+            requestURI = "/" + str[1] + "/" + str[2];
+        }
+        if (ShiroKit.hasPermission(requestURI)) {
+            return true;
         }
         return false;
     }

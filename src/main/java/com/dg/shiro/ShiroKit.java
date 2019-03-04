@@ -29,6 +29,17 @@ public class ShiroKit {
     }
 
     /**
+     * 验证当前用户是否拥有指定权限，使用时与lacksPermission搭配使用
+     *
+     * @param permission
+     * @return
+     */
+    public static boolean hasPermission(String permission) {
+        return getSubject() != null && permission != null
+                && permission.length() > 0 && getSubject().isPermitted(permission);
+    }
+
+    /**
      * 验证当前用户是否属于以下任意一个角色。
      *
      * @param roleNames
@@ -47,4 +58,6 @@ public class ShiroKit {
         }
         return hasAnyRole;
     }
+
+
 }
