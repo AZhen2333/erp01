@@ -8,7 +8,7 @@ import java.util.List;
 public interface AuthMapper {
 
     /**
-     * 根据用户表主键id查询角色列表
+     * 根据角色id查询角色列表
      *
      * @param roleIds
      * @return
