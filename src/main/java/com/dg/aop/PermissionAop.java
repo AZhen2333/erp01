@@ -20,6 +20,9 @@ import java.lang.reflect.Method;
  */
 // @Aspect:定义切面
 @Aspect
+/**
+ * @Component：把普通pojo实例化到spring容器中，相当于配置文件中的<bean id="" class=""/>
+ */
 @Component
 @Order(200)
 public class PermissionAop {
