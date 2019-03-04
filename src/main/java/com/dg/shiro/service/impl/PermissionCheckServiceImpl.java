@@ -4,6 +4,7 @@ import com.dg.listener.ConfigListener;
 import com.dg.shiro.ShiroKit;
 import com.dg.shiro.ShiroUser;
 import com.dg.shiro.service.PermissionCheckService;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@Service
 public class PermissionCheckServiceImpl implements PermissionCheckService {
 
     /**

@@ -52,3 +52,15 @@ CREATE TABLE `erp_user` (
   KEY `id` (`id`) USING BTREE,
   KEY `mobile` (`mobile`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户表'
+
+CREATE TABLE `erp_dept` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `num` int(11) DEFAULT NULL COMMENT '排序',
+  `pid` int(11) DEFAULT NULL COMMENT '父部门id',
+  `pids` varchar(255) DEFAULT NULL COMMENT '父级ids',
+  `simplename` varchar(45) DEFAULT NULL COMMENT '简称',
+  `fullname` varchar(255) DEFAULT NULL COMMENT '全称',
+  `tips` varchar(255) DEFAULT NULL COMMENT '提示',
+  `version` int(11) DEFAULT NULL COMMENT '版本（乐观锁保留字段）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='部门表';

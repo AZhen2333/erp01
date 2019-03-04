@@ -22,6 +22,12 @@ public class ResponseResult implements Serializable {
         this.message = IStatusMessage.SystemStatus.SUCCESS.getMessage();
     }
 
+    public ResponseResult(Object obj) {
+        this.code = IStatusMessage.SystemStatus.SUCCESS.getCode();
+        this.message = IStatusMessage.SystemStatus.SUCCESS.getMessage();
+        this.obj = obj;
+    }
+
     /**
      * 失败
      *
