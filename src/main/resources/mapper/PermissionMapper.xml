@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dg.dao.PermissionMapper">
+
+
+    <sql id="PermColumn">
+      id, code, pid pids, name, icon, url, num, levels, ismenu, tips, status, isopen
+    </sql>
+    <!--=Start findPermsByRole 根据角色ID查找权限树列表-->
+    <select id="findPermsByRole" resultType="com.dg.pojo.Permission">
+        select
+        <include refid="PermColumn"/>
+        from permission p
+        LEFT JOIN erp_relation rp ON rp.permit_id=p.id
+        WHERE rp.role_id=#{roleId}
+    </select>
+
+</mapper>
