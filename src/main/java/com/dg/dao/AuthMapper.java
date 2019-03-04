@@ -10,8 +10,8 @@ public interface AuthMapper {
     /**
      * 根据用户表主键id查询角色列表
      *
-     * @param userInfoId
+     * @param roleIds
      * @return
      */
-    List<Role> getRoleByUserInfoId(@Param("userInfoId") Integer userInfoId);
+    List<Role> getRoleListById(@Param("roleIds") List<Integer> roleIds);
 }

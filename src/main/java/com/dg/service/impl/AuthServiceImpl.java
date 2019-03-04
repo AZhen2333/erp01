@@ -20,8 +20,8 @@ public class AuthServiceImpl implements AuthService {
     private PermissionMapper permissionMapper;
 
     @Override
-    public List<Role> getRoleByUserInfoId(Integer userInfoId) {
-        return authMapper.getRoleByUserInfoId(userInfoId);
+    public List<Role> getRoleListById(List<Integer> roleIds) {
+        return authMapper.getRoleListById(roleIds);
     }
 
     @Override

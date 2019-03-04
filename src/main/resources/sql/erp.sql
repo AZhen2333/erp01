@@ -1,4 +1,4 @@
-CREATE TABLE `permission` (
+CREATE TABLE `erp_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL COMMENT '菜单名称',
   `pid` int(11) DEFAULT NULL COMMENT '父菜单id',
@@ -14,7 +14,7 @@ CREATE TABLE `permission` (
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT
 
 
-CREATE TABLE `role` (
+CREATE TABLE `erp_role` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(30) DEFAULT NULL COMMENT '角色名称',
   `descpt` varchar(50) DEFAULT NULL COMMENT '角色描述',
@@ -33,7 +33,7 @@ CREATE TABLE `role_permission` (
   KEY `roleid` (`role_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT
 
-CREATE TABLE `user` (
+CREATE TABLE `erp_user` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT '' COMMENT '用户名',
   `mobile` varchar(15) DEFAULT '' COMMENT '手机号',
@@ -52,11 +52,3 @@ CREATE TABLE `user` (
   KEY `id` (`id`) USING BTREE,
   KEY `mobile` (`mobile`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户表'
-
-CREATE TABLE `user_role` (
-  `user_id` int(11) NOT NULL,
-  `role_id` int(5) NOT NULL,
-  PRIMARY KEY (`user_id`,`role_id`),
-  KEY `userid` (`user_id`) USING BTREE,
-  KEY `roleid` (`role_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8

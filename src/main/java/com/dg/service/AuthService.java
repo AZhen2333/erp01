@@ -13,10 +13,10 @@ public interface AuthService {
     /**
      * 根据用户表主键id查询角色列表
      *
-     * @param userInfoId
+     * @param roleIds
      * @return
      */
-    public List<Role> getRoleByUserInfoId(Integer userInfoId);
+    public List<Role> getRoleListById(List<Integer> roleIds);
 
     /**
      * 根据角色ID查找权限树列表

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wyait.manage.dao.RoleMapper" >
+<mapper namespace="com.wyait.manage.dao.RoleMapper">
 
-    <select id="getRoleByUserInfoId" resultType="Role">
+    <select id="getRoleListById" resultType="Role">
         select
-          ur.role_id id,r.role_name,r.code
+        r.id,r.role_name,r.code
         from
-          user_role ur
-        INNER JOIN role r ON r.id=ur.role_id
+        role r
         <where>
-            ur.user_id=#{userInfoId}
+            r r.id in
+            <foreach collection="roleIds" open="(" close=")" separator="," item="roleId">
+                #{roleId}
+            </foreach>
         </where>
 
     </select>

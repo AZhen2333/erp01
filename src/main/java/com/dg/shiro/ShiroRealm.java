@@ -41,11 +41,9 @@ public class ShiroRealm extends AuthorizingRealm {
         // 添加权限 和 角色信息
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         // 获取当前用户
-        Subject subject = SecurityUtils.getSubject();
-        UserInfo user = (UserInfo) subject.getPrincipal();
-        Integer userInfoId = user.getId();
+        ShiroUser user = ShiroKit.getShiroUser();
         // 查询用户的角色，根据角色查询权限
-        List<Role> roles = authService.getRoleByUserInfoId(userInfoId);
+        List<Role> roles = authService.getRoleListById(user.getRoleList());
         if (null != roles && roles.size() > 0) {
             for (Role role : roles) {
                 authorizationInfo.addRole(role.getCode());

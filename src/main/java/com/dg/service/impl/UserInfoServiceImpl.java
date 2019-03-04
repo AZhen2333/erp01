@@ -4,6 +4,7 @@ import com.dg.dao.UserInfoMapper;
 import com.dg.pojo.UserInfo;
 import com.dg.service.UserInfoService;
 import com.dg.shiro.ShiroUser;
+import com.dg.utils.RoleIdTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 //        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
         shiroUser.setName(user.getName());
 
-        List<Integer> roleList = strToIntArray(user.getRoleid());
+        List<Integer> roleList = RoleIdTool.strToIntArray(user.getRoleid());
 
         // TODO List<String> roleNameList = new ArrayList<String>();
 //        for (int roleId : roleArray) {
@@ -46,20 +47,6 @@ public class UserInfoServiceImpl implements UserInfoService {
         // TODO shiroUser.setRoleNames(roleNameList);
 
         return shiroUser;
-    }
-
-
-    public List<Integer> strToIntArray(String strs){
-        List<Integer> list = new ArrayList<>();
-        if(strs.length() == 1){
-            list.add(Integer.valueOf(strs));
-        }else if(strs.contains(",")){
-            String[] strArray = strs.split(",");
-            for (String str : strArray) {
-                list.add(Integer.valueOf(str));
-            }
-        }
-        return list;
     }
 
 }
